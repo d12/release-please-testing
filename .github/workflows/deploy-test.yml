@@ -26,6 +26,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Debug: Print the entire github.event
+      - name: Print GitHub Event
+        if: ${{ github.event_name == 'release' }}
+        run: echo "${{ toJson(github.event) }}"
+
       - name: Show context
         run: |
           echo "Event: ${{ github.event_name }}"
