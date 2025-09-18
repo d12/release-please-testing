@@ -28,7 +28,6 @@ jobs:
 
       # Debug: Print the entire github.event
       - name: Print GitHub Event
-        if: ${{ github.event_name == 'release' }}
         run: echo "${{ toJson(github.event) }}"
 
       - name: Show context
