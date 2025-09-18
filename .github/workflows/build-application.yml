@@ -17,4 +17,6 @@ jobs:
     # Count the number of characters in the input and secret string and print to the console.
       - name: Count characters
         run: |
-          echo "Secret string length: ${{ secrets.SECRET_STRING }}"
+          secret="${{ secrets.secret_string }}"
+          length=${#secret}
+          echo "Secret string length: $length"
