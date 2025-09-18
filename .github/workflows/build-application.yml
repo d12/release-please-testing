@@ -2,6 +2,10 @@ name: build-application
 
 on:
   workflow_call:
+    inputs:
+      environment:
+        required: false
+        type: string
     secrets:
       SECRET_STRING:
         required: true
@@ -12,7 +16,7 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
+    environment: ${{ inputs.environment }}
     steps:
     # Count the number of characters in the input and secret string and print to the console.
       - name: Count characters
