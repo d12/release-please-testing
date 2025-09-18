@@ -19,7 +19,6 @@ jobs:
 
   build-application:
     uses: ./.github/workflows/build-application.yml
-    environment: build
     secrets:
       SECRET_STRING: ${{ secrets.SECRET_STRING }}
 
@@ -34,8 +33,6 @@ jobs:
     environment: ${{ matrix.env }}
 
     steps:
-      - name: Deploy to ${{ matrix.env }}
-        run: ./scripts/deploy-environment.sh
-        env:
-          ENVIRONMENT: ${{ matrix.env }}
+      - uses: ./.github/workflows/deploy-environment.yml
+        secrets:
           SECRET_STRING: ${{ secrets.SECRET_STRING }}
