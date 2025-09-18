@@ -20,6 +20,7 @@ jobs:
     secrets: inherit
 
   deploy-production:
+    runs-on: ubuntu-latest
     needs: [release-please, build-application]
     environment: production
     steps:
@@ -30,6 +31,7 @@ jobs:
           echo "Secret string length: $length"
 
   deploy-staging:
+    runs-on: ubuntu-latest
     needs: [release-please, build-application]
     environment: staging
     steps:
