@@ -20,19 +20,18 @@ jobs:
           token: ${{ secrets.MY_RELEASE_PLEASE_TOKEN }}
           release-type: simple
 
-      # Check out the PR branch only if a release PR was created or updated
+      # Only run if a PR was created or updated
       - uses: actions/checkout@v4
         if: ${{ steps.release.outputs.prs_created == 'true' }}
         with:
           ref: ${{ fromJson(steps.release.outputs.pr).headBranchName }}
 
-      # Update the file with the commit SHA of the release
-      - name: Update .deploy/test with release commit SHA
+      - name: Update .deploy/test with next release version
         if: ${{ steps.release.outputs.prs_created == 'true' }}
         run: |
-          echo "${{ steps.release.outputs.sha }}" > .deploy/test
+          echo "${{ fromJson(steps.release.outputs.pr).version }}" > .deploy/test
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .deploy/test
-          git commit -m "chore: update .deploy/test with release commit SHA"
+          git commit -m "chore: update .deploy/test with next release version"
           git push
