@@ -2,7 +2,7 @@ name: deploy-environment
 
 on:
   workflow_call:
-    with:
+    inputs:
       environment:
         required: true
         type: string
