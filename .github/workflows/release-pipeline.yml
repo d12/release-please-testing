@@ -19,8 +19,7 @@ jobs:
 
   build-application:
     uses: ./.github/workflows/build-application.yml
-    secrets:
-      SECRET_STRING: ${{ secrets.SECRET_STRING }}
+    secrets: inherit
 
   deploy:
     needs: [release-please, build-application]
@@ -34,5 +33,4 @@ jobs:
 
     steps:
       - uses: ./.github/workflows/deploy-environment.yml
-        secrets:
-          SECRET_STRING: ${{ secrets.SECRET_STRING }}
+        secrets: inherit
