@@ -1,0 +1,38 @@
+name: deploy
+
+on:
+  release:
+    types: [published]
+  push:
+    branches:
+      - main
+    paths:
+      - ".deploy/test"
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # Run if:
+    #  - this was a release event (always run)
+    #  - OR this was a push to .deploy/test NOT authored by release-please[bot]
+    if: |
+      github.event_name == 'release' ||
+      (github.event_name == 'push' &&
+       github.actor != 'release-please[bot]')
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Show context
+        run: |
+          echo "Event: ${{ github.event_name }}"
+          echo "Actor: ${{ github.actor }}"
+          if [ "${{ github.event_name }}" = "release" ]; then
+            echo "Release tag: ${{ github.event.release.tag_name }}"
+          fi
+
+      - name: Deploy app
+        run: echo "Deploying app..."
