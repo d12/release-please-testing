@@ -1,3 +1,4 @@
+# .github/workflows/deploy.yml
 name: deploy
 
 on:
@@ -15,28 +16,14 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    # Run if:
-    #  - this was a release event (always run)
-    #  - OR this was a push to .deploy/test NOT authored by release-please[bot]
+    # Always deploy on a release event.
+    # On push to .deploy/test, skip if the commit is a Release Please merge.
     if: |
       github.event_name == 'release' ||
       (github.event_name == 'push' &&
-       github.actor != 'release-please[bot]')
-
+       !contains(github.event.head_commit.message, 'chore(main): release'))
     steps:
       - uses: actions/checkout@v4
-
-      # Debug: Print the entire github.event
-      - name: Print GitHub Event
-        run: echo "${{ toJson(github.event) }}"
-
-      - name: Show context
-        run: |
-          echo "Event: ${{ github.event_name }}"
-          echo "Actor: ${{ github.actor }}"
-          if [ "${{ github.event_name }}" = "release" ]; then
-            echo "Release tag: ${{ github.event.release.tag_name }}"
-          fi
-
+      
       - name: Deploy app
-        run: echo "Deploying app..."
+        run: ./scripts/deploy.sh
