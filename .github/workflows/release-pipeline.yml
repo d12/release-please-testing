@@ -34,4 +34,4 @@ jobs:
         uses: ./.github/workflows/deploy-environment.yml
         with:
           environment: production
-        secrets: inherit
+          SECRET_STRING: ${{ secrets.SECRET_STRING }}
