@@ -22,7 +22,6 @@ jobs:
   deploy-production:
     needs: [release-please, build-application]
     uses: ./.github/workflows/deploy-environment.yml 
-    environment: production
     with:
-      SECRET_STRING: ${{ secrets.SECRET_STRING }}
+      SECRET_STRING: ${{ secrets.PRODUCTION_SECRET_STRING }}
 
