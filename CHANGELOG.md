@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.3](https://github.com/d12/release-please-testing/compare/v1.0.2...v1.0.3) (2025-09-18)
+
+
+### Bug Fixes
+
+* Foo ([690a8d9](https://github.com/d12/release-please-testing/commit/690a8d916e16d1a3b2e8962e894ca85388128012))
+* Update ([0c82ccd](https://github.com/d12/release-please-testing/commit/0c82ccdf5377880786039e7cc8fee3f28488e00b))
+
 ## [1.0.2](https://github.com/d12/release-please-testing/compare/v1.0.1...v1.0.2) (2025-09-18)
 
 
