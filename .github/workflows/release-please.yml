@@ -29,9 +29,10 @@ jobs:
       - name: Update .deploy/test with next release version
         if: ${{ steps.release.outputs.prs_created == 'true' }}
         run: |
-          echo "${{ fromJson(steps.release.outputs.pr).version }}" > .deploy/test
+          VERSION=$(echo '${{ steps.release.outputs.pr }}' | jq -r '.title' | sed -E 's/.*release ([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
+          echo "$VERSION" > .deploy/test
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .deploy/test
-          git commit -m "chore: update .deploy/test with next release version"
+          git commit -m "chore: update .deploy/test with next release version $VERSION"
           git push
