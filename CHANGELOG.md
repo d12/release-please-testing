@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.4](https://github.com/d12/release-please-testing/compare/v1.0.3...v1.0.4) (2025-09-18)
+
+
+### Bug Fixes
+
+* Fix deploy script and downgrade test environment ([9f5badb](https://github.com/d12/release-please-testing/commit/9f5badb869192aca7b04fc2ecfb80e16252bc1f2))
+* Fix the workflow ([1c2e190](https://github.com/d12/release-please-testing/commit/1c2e190eac2926377f76291cd2b0dfd781bbf41e))
+
 ## [1.0.3](https://github.com/d12/release-please-testing/compare/v1.0.2...v1.0.3) (2025-09-18)
 
 
