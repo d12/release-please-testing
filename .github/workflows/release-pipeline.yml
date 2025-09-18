@@ -33,4 +33,3 @@ jobs:
 
     steps:
       - uses: ./.github/workflows/deploy-environment.yml
-        secrets: inherit
