@@ -16,8 +16,7 @@ name: release-pipeline
 jobs:
   release-please:
     uses: ./.github/workflows/release-please.yml
-    with: 
-      MY_RELEASE_PLEASE_TOKEN: ${{ secrets.MY_RELEASE_PLEASE_TOKEN }}
+    secrets: inherit
 
   build-application:
     uses: ./.github/workflows/build-application.yml
