@@ -1,5 +1,8 @@
 on:
   workflow_call:
+    secrets:
+      MY_RELEASE_PLEASE_TOKEN:
+        required: true
 
 permissions:
   contents: write
