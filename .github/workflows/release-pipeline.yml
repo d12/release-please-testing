@@ -19,13 +19,11 @@ jobs:
     uses: ./.github/workflows/build-application.yml
     secrets: inherit
 
-
-
-  deploy:
+  deploy-environment:
     needs: [release-please, build-application]
     strategy:
       matrix:
         env: [test, staging, production]
-    uses: ./.github/workflows/deploy-environment.yml
     environment: ${{ matrix.env }}
+    uses: ./.github/workflows/deploy-environment.yml    
     secrets: inherit
