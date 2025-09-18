@@ -1,0 +1,25 @@
+name: deploy-environment
+
+on:
+  workflow_call:
+    inputs:
+      input_string:
+        required: true
+        type: string
+    secrets:
+      secret_string:
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Count the number of characters in the input and secret string and print to the console.
+      - name: Count characters
+        run: |
+          echo "Input string length: ${{ inputs.input_string }}"
+          echo "Secret string length: ${{ secrets.secret_string }}"

@@ -1,0 +1,20 @@
+name: build-application
+
+on:
+  workflow_call:
+    secrets:
+      SECRET_STRING:
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Count the number of characters in the input and secret string and print to the console.
+      - name: Count characters
+        run: |
+          echo "Secret string length: ${{ secrets.SECRET_STRING }}"

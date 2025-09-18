@@ -1,0 +1,41 @@
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+name: release-pipeline
+
+# Run release-please and build-application in parallel,
+# then run deploy-environment in both dev and test environments.
+
+jobs:
+  release-please:
+    uses: ./.github/workflows/release-please.yml
+
+  build-application:
+    uses: ./.github/workflows/build-application.yml
+    environment: build
+    secrets:
+      SECRET_STRING: ${{ secrets.SECRET_STRING }}
+
+  deploy:
+    needs: [release-please, build-application]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        env: [test, staging, production]
+
+    # This attaches the job to the corresponding GitHub environment
+    environment: ${{ matrix.env }}
+
+    steps:
+      - name: Deploy to ${{ matrix.env }}
+        run: ./scripts/deploy-environment.sh
+        env:
+          ENVIRONMENT: ${{ matrix.env }}
+          SECRET_STRING: ${{ secrets.SECRET_STRING }}
