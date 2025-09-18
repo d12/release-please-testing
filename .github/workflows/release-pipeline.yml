@@ -19,11 +19,19 @@ jobs:
     uses: ./.github/workflows/build-application.yml
     secrets: inherit
 
-  deploy-environment:
+  deploy-production:
     needs: [release-please, build-application]
-    strategy:
-      matrix:
-        env: [test, staging, production]
-    environment: ${{ matrix.env }}
-    uses: ./.github/workflows/deploy-environment.yml    
+    environment: production
     secrets: inherit
+
+    env:
+      SECRET_STRING: ${{ secrets.SECRET_STRING }}
+
+# First, extract the secret_string from the environment secrets
+# Then pass that into deploy-environment
+    steps:
+      - name: Deploy to production
+        uses: ./.github/workflows/deploy-environment.yml
+        with:
+          environment: production
+        secrets: inherit

@@ -2,6 +2,10 @@ name: deploy-environment
 
 on:
   workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
     secrets:
       secret_string:
         required: true
