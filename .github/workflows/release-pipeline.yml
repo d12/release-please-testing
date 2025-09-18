@@ -21,8 +21,20 @@ jobs:
 
   deploy-production:
     needs: [release-please, build-application]
-    uses: ./.github/workflows/deploy-environment.yml 
     environment: production
-    secrets:
-      SECRET_STRING: ${{ secrets.SECRET_STRING }}
+    steps:
+      - name: Count characters
+        run: |
+          secret="${{ secrets.secret_string }}"
+          length=${#secret}
+          echo "Secret string length: $length"
 
+  deploy-staging:
+    needs: [release-please, build-application]
+    environment: staging
+    steps:
+      - name: Count characters
+        run: |
+          secret="${{ secrets.secret_string }}"
+          length=${#secret}
+          echo "Secret string length: $length"
