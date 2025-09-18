@@ -28,6 +28,6 @@ jobs:
       SECRET_STRING: ${{ secrets.SECRET_STRING }}
 
     uses: ./.github/workflows/deploy-environment.yml 
-    secrets:
-      SECRET_STRING: ${{ secrets.SECRET_STRING }}
+    with:
+      SECRET_STRING: ${{ env.SECRET_STRING }}
 
