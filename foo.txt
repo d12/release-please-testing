@@ -1,3 +1,4 @@
 foo
 bar4354
 bvar
+bar
