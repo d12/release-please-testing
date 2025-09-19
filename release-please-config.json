@@ -2,6 +2,7 @@
   "extra-files": [
     ".deploy/test"
   ],
+  "release-type": "simple",
   "packages": {
     ".": {}
   }
