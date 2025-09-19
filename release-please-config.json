@@ -1,6 +1,6 @@
 {
   "extra-files": [
-    ".deploy/test"
+    ".deploy/test.json"
   ],
   "release-type": "simple",
   "packages": {
