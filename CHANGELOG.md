@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.5](https://github.com/d12/release-please-testing/compare/v1.0.4...v1.0.5) (2025-09-19)
+
+
+### Bug Fixes
+
+* Fix ([0d03c6f](https://github.com/d12/release-please-testing/commit/0d03c6f4597536d24c87ef37a6f4ab02a371f1e1))
+
 ## [1.0.4](https://github.com/d12/release-please-testing/compare/v1.0.3...v1.0.4) (2025-09-18)
 
 
