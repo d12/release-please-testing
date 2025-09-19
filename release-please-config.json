@@ -2,8 +2,5 @@
   "extra-files": [
     ".deploy/test.json"
   ],
-  "release-type": "simple",
-  "packages": {
-    ".": {}
-  }
+  "release-type": "simple"
 }
