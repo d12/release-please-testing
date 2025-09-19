@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.0.5](https://github.com/d12/release-please-testing/compare/v1.0.4...v1.0.5) (2025-09-19)
+
+
+### Bug Fixes
+
+* Fix ([0d03c6f](https://github.com/d12/release-please-testing/commit/0d03c6f4597536d24c87ef37a6f4ab02a371f1e1))
+* Foo ([26ba54a](https://github.com/d12/release-please-testing/commit/26ba54a452c0730533b939be1541f2abe7fd8d60))
+* Foo ([da731fe](https://github.com/d12/release-please-testing/commit/da731fef419cff445e4e5ca25b89335d0fb88601))
+* Foo ([a8d1bef](https://github.com/d12/release-please-testing/commit/a8d1bef7583c7e2e4f690ea401bc32bfae2b2881))
+* Foo ([a809f47](https://github.com/d12/release-please-testing/commit/a809f4738c2e67a9eefebd0afc2bfbebb2171625))
+* Foo ([c0d96d0](https://github.com/d12/release-please-testing/commit/c0d96d079822d5a2806508c4e50c763857833f21))
+* Rename file ([6f59656](https://github.com/d12/release-please-testing/commit/6f596569159673d097ba72cce96dd9d3ee9604aa))
+
 ## [1.0.4](https://github.com/d12/release-please-testing/compare/v1.0.3...v1.0.4) (2025-09-18)
 
 
