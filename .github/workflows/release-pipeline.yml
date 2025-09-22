@@ -17,14 +17,12 @@ jobs:
 
   # Builds the frontend application for the current SHA and stores the artifact in S3.
   build-frontend:
-    needs: release-please
     runs-on: ubuntu-latest
     steps:
       - run: echo "Building frontend..."
 
   # Builds the backend application for the current SHA and stores the artifact in ECR.
   build-backend:
-    needs: release-please
     runs-on: ubuntu-latest
     steps:
       - run: echo "Building backend..."
