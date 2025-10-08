@@ -57,7 +57,7 @@ jobs:
     steps:
       - name: Notify slack about successful Deployments
         run: |
-          echo "The deployment was successful!"
+          echo "The deployment to the environments ${{ needs.notify-slack-about-deploy.outputs.envs }} was successful!"
 
   notify-slack-about-deploy-failure:
     runs-on: ubuntu-latest
@@ -66,4 +66,4 @@ jobs:
     steps:
       - name: Notify slack about failed Deployments
         run: |
-          echo "The deployment failed!"
+          echo "The deployment to the environments ${{ needs.notify-slack-about-deploy.outputs.envs }} has failed!"
