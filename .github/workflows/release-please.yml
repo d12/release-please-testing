@@ -1,8 +1,7 @@
 on:
-  workflow_call:
-    secrets:
-      MY_RELEASE_PLEASE_TOKEN:
-        required: true
+  push:
+    branches:
+      - main
 
 permissions:
   contents: write
@@ -12,10 +11,28 @@ permissions:
 name: release-please
 
 jobs:
-  release-please:
+  notify-slack-about-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: googleapis/release-please-action@c2a5a2bd6a758a0937f1ddb1e8950609867ed15c # v4.3.0
-        id: release
-        with:
-          token: ${{ secrets.MY_RELEASE_PLEASE_TOKEN }}
+      - name: Check what environments are being deployed to
+        id: check-envs
+        if: github.event_name != 'workflow_dispatch'
+        run: |
+          ENVS_TO_DEPLOY=""
+          for file in $(git diff --name-only ${{ github.event.before }} ${{ github.sha }}); do
+            if [[ "$file" == .deployed_versions/*.json ]]; then
+              ENV_NAME=$(basename $file .json)
+              if [ -z "$ENVS_TO_DEPLOY" ]; then
+                ENVS_TO_DEPLOY="$ENV_NAME"
+              else
+                ENVS_TO_DEPLOY="$ENVS_TO_DEPLOY,$ENV_NAME"
+              fi
+            fi
+          done
+          echo "Found environments to deploy: $ENVS_TO_DEPLOY"
+          echo "envs=$ENVS_TO_DEPLOY" >> $GITHUB_OUTPUT
+
+      - name: Notify slack
+        if: steps.check-envs.outputs.envs != ''
+        run: |
+          echo "Would have notified slack about deployment to the following environments: ${{ steps.check-envs.outputs.envs }}"
