@@ -12,6 +12,7 @@ name: release-please
 
 jobs:
   notify-slack-about-deploy:
+    id: notify-slack
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -39,4 +40,24 @@ jobs:
       - name: Notify slack
         if: steps.check-envs.outputs.envs != ''
         run: |
-          echo "Would have notified slack about deployment to the following environments: ${{ steps.check-envs.outputs.envs }}"
+          echo "Deployments are beginning to the environments: ${{ steps.check-envs.outputs.envs }}"
+  run-deploy:
+    runs-on: ubuntu-latest
+    needs: [notify-slack-about-deploy]
+    steps:
+      - run: echo "Deploying the application!"
+
+  notify-slack-about-deploy-status:
+    runs-on: ubuntu-latest
+    needs: [run-deploy]
+    if: always()
+    steps:
+      - name: Notify slack about successful Deployments
+        if: success()
+        run: |
+          echo "The deployment was successful!"
+
+      - name: Notify slack about failed Deployments
+        if: failure()
+        run: |
+          echo "The deployment failed!" 
