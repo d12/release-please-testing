@@ -13,6 +13,8 @@ name: release-please
 jobs:
   notify-slack-about-deploy:
     runs-on: ubuntu-latest
+    outputs:
+      envs: ${{ steps.check-envs.outputs.envs }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -49,8 +51,8 @@ jobs:
 
   notify-slack-about-deploy-status:
     runs-on: ubuntu-latest
-    needs: [run-deploy]
-    if: always()
+    needs: [notify-slack-about-deploy, run-deploy]
+    if: always() && needs.notify-slack-about-deploy.outputs.envs != ''
     steps:
       - name: Notify slack about successful Deployments
         if: success()
