@@ -14,6 +14,10 @@ jobs:
   notify-slack-about-deploy:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
       - name: Check what environments are being deployed to
         id: check-envs
         if: github.event_name != 'workflow_dispatch'
