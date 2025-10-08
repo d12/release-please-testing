@@ -48,6 +48,7 @@ jobs:
     needs: [notify-slack-about-deploy]
     steps:
       - run: echo "Deploying the application!"
+      - run: exit 1  # Simulate a failure in deployment
 
   notify-slack-about-deploy-status:
     runs-on: ubuntu-latest
