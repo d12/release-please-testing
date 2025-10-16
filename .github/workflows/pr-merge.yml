@@ -1,4 +1,7 @@
 name: Notify Slack on PR Merge
+permissions:
+  contents: read
+  pull-requests: read
 
 on:
   pull_request:
@@ -24,7 +27,7 @@ jobs:
             --arg url "$PR_URL" \
             --arg repo "$REPO_NAME" \
             '{
-              text: ":tada: A pull request has been merged!",
+              text: ":merged: A pull request has been merged.",
               attachments: [
                 {
                   color: "#36a64f",
